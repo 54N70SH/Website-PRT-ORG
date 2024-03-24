@@ -1,0 +1,15 @@
+---
+- hosts: servers
+  become: yes
+  tasks:
+    - name: Install Apache2
+      yum:
+        name: httpd
+        state: present
+      when: inventory_hostname == "Elastic_IP"
+
+    - name: Install Nginx
+      yum:
+        name: nginx
+        state: present
+      when: inventory_hostname != "Elastic_IP"
